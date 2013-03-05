@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/knockout-2.2.1.js"></script>
+    <script src="Scripts/datajs-1.0.3.js"></script>
+    <script src="Scripts/jaydata.js"></script>
+    <script src="Scripts/jaydatamodules/knockout.js"></script>
+   <!-- TODO: add script reference to context file-->
+   
+</head>
+<body>
+    <div>
+        <section id="wrapper" style="padding-top:  5px !important;">
+            <h2 >GCU-MART Stock Inventory</h2>
+
+            <table data-bind="visible: $root.stocks().length > 0" >
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Unit Price</th>
+                        <th>Units in Stock</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: stocks">
+                    <tr>
+                        <td><a href="#" data-bind="text: Description, click: $root.editStock"></a></td>
+                        <td data-bind="text: Category"></td>
+                        <td data-bind="text: UnitPrice"></td>
+                        <td data-bind="text: UnitsInStock"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ko if: $root.editStock -->
+            <div>
+                <div>
+                    <form data-bind="submit: saveStock">
+                        <fieldset data-bind="with: $root.editStock">
+                        <legend>Edit Stock</legend>
+                        
+                        <div>
+                            Description:
+                            <br />
+                            <input type="text" data-bind="value: Description" />
+                            <br />
+                            Category:
+                            <br />
+                            <input type="text" data-bind="value: Category" />
+                            <br />
+                            Unit Price:
+                            <br />
+                            <input type="text" data-bind="value: UnitPrice" />
+                            <br />
+                            Units In Stock:
+                            <br />
+                            <input type="text" data-bind="value: UnitsInStock" />
+                            <br />
+                        </div>
+                            <div>
+                                <input type="submit" value="save" />
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="saveResult">
+                    <strong>Success!</strong> 
+                    <br/>Stock has been saved successfully.
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <script>
+                // TODO: instantiate context as stockContext
+               
+
+                stockContext.onReady(function () {
+                    $(function () {
+                        $('#saveResult').hide();
+
+                        function StockViewModel() {
+                            var self = this;
+                            self.stocks = ko.observableArray([]);
+
+                            self.editStock = ko.observable(false);
+                            self.editStock.subscribe(function (value) {
+                                var oldValue = self.editStock();
+                                console.dir(oldValue.innerInstance);
+                                if (oldValue instanceof StockService.Models.ObservableStock)
+                                    // TODO: detach oldValue.innerInstance from Stocks entity collection
+                                    
+                            }, undefined, 'beforeChange');
+                            self.editStock.subscribe(function (value) {
+                                console.dir(value.innerInstance);
+                                if (value instanceof StockService.Models.ObservableStock)
+                                    // TODO: attch value.innerInstance to Stocks entity collection
+                                    
+                            });
+                            self.saveStock = function () {
+                                // TODO: save changes
+                                
+                                var result = $('#saveResult');
+                                result.show();
+                                setTimeout(function () {
+                                    result.fadeOut("slow");
+                                }, 1500);
+                            };
+
+                            stockContext.Stocks
+                             .toArray(self.stocks);
+                        };
+
+                        ko.applyBindings(new StockViewModel());
+
+                    });
+                });
+            </script>
+
+        </section>
+    </div>
+</body>
+</html>
+

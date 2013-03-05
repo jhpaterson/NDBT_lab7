@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>JayData</id>
+    <version>1.2.7</version>
+    <title>JayData</title>
+    <authors>JayStack Technologies</authors>
+    <owners>JayStack Technologies</owners>
+    <licenseUrl>http://jaydata.org/licensing</licenseUrl>
+    <projectUrl>http://jaydata.org/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The unified data-management library for JavaScript/HTML5</description>
+    <summary>JayData is a standards-based (mostly HTML5), cross-platform Javascript library and a set of practices to access and manipulate data from various online and offline sources.</summary>
+    <releaseNotes />
+    <copyright>JayStack Technologies</copyright>
+    <language />
+    <tags>jaydata jslq javascript js html5 data management odata indexeddb sqlite azure yql facebook fql mongodb HTML5 localStorage opensource cross-platform cross-layer</tags>
+    <dependencies>
+      <dependency id="jQuery" version="1.8" />
+      <dependency id="datajs" version="1.0.3" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>
